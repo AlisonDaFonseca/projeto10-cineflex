@@ -1,17 +1,42 @@
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom"
 import styled from "styled-components"
+import axios from "axios";
 
 export default function SeatsPage() {
+
+    const parametros = useParams();
+
+
+    const [sessao, setSessao] = useState(undefined);
+
+    useEffect(() => {
+        const url = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${parametros.idHorarios}/seats`;
+        const promise = axios.get(url);
+
+        promise.then((resposta) => {
+            console.log(resposta.data)
+            setSessao(resposta.data)
+        })
+        promise.catch((erro) => {
+            console.log(erro.response.data)
+        })
+    }, []);
+
+    if (sessao === undefined) {
+        return (<div><img src="https://www.dcam.ufscar.br/quem-somos/carregando" alt="" /></div>);
+    }
 
     return (
         <PageContainer>
             Selecione o(s) assento(s)
 
             <SeatsContainer>
-                <SeatItem>01</SeatItem>
-                <SeatItem>02</SeatItem>
-                <SeatItem>03</SeatItem>
-                <SeatItem>04</SeatItem>
-                <SeatItem>05</SeatItem>
+                {sessao.seats.map((seat) => {
+                    return (
+                        <SeatItem key={seat.id}>{seat.name}</SeatItem>
+                    );
+                })}
             </SeatsContainer>
 
             <CaptionContainer>
@@ -36,16 +61,19 @@ export default function SeatsPage() {
                 CPF do Comprador:
                 <input placeholder="Digite seu CPF..." />
 
-                <button>Reservar Assento(s)</button>
+                <Link to={`/success`}>
+                    <button>Reservar Assento(s)</button>
+                </Link>
+                
             </FormContainer>
 
             <FooterContainer>
                 <div>
-                    <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
+                    <img src={sessao.movie.posterURL} alt="poster" />
                 </div>
                 <div>
-                    <p>Tudo em todo lugar ao mesmo tempo</p>
-                    <p>Sexta - 14h00</p>
+                    <p>{sessao.movie.title}</p>
+                    <p>{sessao.day.weekday} - {sessao.name}</p>
                 </div>
             </FooterContainer>
 

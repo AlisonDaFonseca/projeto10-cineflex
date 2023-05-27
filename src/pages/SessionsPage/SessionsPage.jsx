@@ -5,7 +5,6 @@ import axios from "axios";
 
 export default function SessionsPage() {
     const parametros = useParams();
-    console.log(parametros)
 
     const [filme, setFilme] = useState(undefined);
     const [horarios, setHorarios] = useState([]);

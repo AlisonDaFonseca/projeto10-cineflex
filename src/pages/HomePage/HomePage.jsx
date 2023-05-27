@@ -1,19 +1,27 @@
 import styled from "styled-components"
 import axios from "axios"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
     const url = 'https://mock-api.driven.com.br/api/v8/cineflex/movies'
     const promise = axios.get(url);
     const [filmes, setFilmes] = useState([]);
 
+    useEffect(() => {
+        promise.then((resposta) => {
+            setFilmes(resposta.data)
+            console.log(resposta.data)
+        });
+        promise.catch((erro) => {
+            console.log(erro.response)
+        });
+    }, []);
 
-    promise.then((resposta) => {
-        setFilmes(resposta.data)
-    });
-    promise.catch((erro) => {
-        console.log(erro.response)
-    });
+    if (filmes.length === 0) {
+        return (<div><img src="https://www.dcam.ufscar.br/quem-somos/carregando" alt="" /></div>);
+    }
+
 
     return (
         <PageContainer>
@@ -21,9 +29,11 @@ export default function HomePage() {
 
             <ListContainer>
                 {filmes.map(filme => (
-                    <MovieContainer key={filme.id}>
-                        <img src={filme.posterURL} alt="poster" />
-                    </MovieContainer>
+                        <MovieContainer key={filme.id}>
+                            <Link to={`/sessions/${filme.id}`}>
+                            <img src={filme.posterURL} alt="poster" />
+                            </Link>
+                        </MovieContainer>
                 ))}
             </ListContainer>
 

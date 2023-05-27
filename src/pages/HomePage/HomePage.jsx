@@ -14,7 +14,7 @@ export default function HomePage() {
             console.log(resposta.data)
         });
         promise.catch((erro) => {
-            console.log(erro.response)
+            console.log(erro.response.data)
         });
     }, []);
 

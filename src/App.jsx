@@ -26,9 +26,9 @@ export default function App() {
             </NavContainer>
             <Routes>
                 <Route path="/" element={<HomePage />} />
-                <Route path="/sessions/:idFilme" element={<SessionsPage />} />
-                <Route path="/seats/:idHorarios" element={<SeatsPage nome={nome} setNome={setNome}cpf={cpf} setCpf={setCpf} lista={lista} setLista={setLista} sessao={sessao} setSessao={setSessao}/>} />
-                <Route path="/success" element={<SuccessPage lista={lista} setLista={setLista} nome={nome} setNome={setNome} cpf={cpf} setCpf={setCpf} setSessao={setSessao} sessao={sessao} /> } />
+                <Route path="/sessoes/:idFilme" element={<SessionsPage />} />
+                <Route path="/assentos/:idSessao" element={<SeatsPage nome={nome} setNome={setNome}cpf={cpf} setCpf={setCpf} lista={lista} setLista={setLista} sessao={sessao} setSessao={setSessao}/>} />
+                <Route path="/sucesso" element={<SuccessPage lista={lista} setLista={setLista} nome={nome} setNome={setNome} cpf={cpf} setCpf={setCpf} setSessao={setSessao} sessao={sessao} /> } />
             </Routes>
         </BrowserRouter>
     )

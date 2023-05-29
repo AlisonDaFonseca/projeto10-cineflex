@@ -8,6 +8,7 @@ export default function SeatsPage({ nome, setNome, cpf, setCpf, lista, setLista,
 
 
     const parametros = useParams();
+    
     const navigate = useNavigate();
 
     function reservar(e) {
@@ -17,7 +18,7 @@ export default function SeatsPage({ nome, setNome, cpf, setCpf, lista, setLista,
         const promise = axios.post(url, reserva);
 
         promise.then(resposta => {
-            navigate('/success')
+            navigate('/sucesso')
         })
         promise.catch(erro => alert(erro.response.data.message))
 
@@ -29,7 +30,7 @@ export default function SeatsPage({ nome, setNome, cpf, setCpf, lista, setLista,
 
 
     useEffect(() => {
-        const url = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${parametros.idHorarios}/seats`;
+        const url = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${parametros.idSessao}/seats`;
         const promise = axios.get(url);
 
         promise.then((resposta) => {

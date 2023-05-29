@@ -36,7 +36,7 @@ export default function SessionsPage() {
                         {horario.weekday} - {horario.date}
                         <ButtonsContainer >
                             {horario.showtimes.map(horario => (
-                                <Link to={`/seats/${horario.id}`} key={horario.id}>
+                                <Link to={`/assentos/${horario.id}`} key={horario.id}>
                                  <button data-test="showtime">{horario.name}</button>
                                 </Link>
                                

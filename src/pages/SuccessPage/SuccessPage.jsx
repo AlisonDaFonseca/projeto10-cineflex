@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 
-export default function SuccessPage({sessao, lista, setLista, setSessao, nome, setNome, cpf, setCpf}) {
+export default function SuccessPage({sessao, sessaoEscolhida, setSessaoEscolhida, setLista, setSessao, nome, setNome, cpf, setCpf}) {
 
     const navigate = useNavigate();
     const listaVazia = [];
@@ -11,6 +11,7 @@ export default function SuccessPage({sessao, lista, setLista, setSessao, nome, s
         setCpf('');
         setSessao('')
         setLista(listaVazia)
+        setSessaoEscolhida(undefined);
         navigate('/');
     }
 
@@ -26,7 +27,7 @@ export default function SuccessPage({sessao, lista, setLista, setSessao, nome, s
 
             <TextContainer data-test="seats-info">
                 <strong><p>Ingressos</p></strong>
-                {lista.map((assento, indice) => <p key={indice}>Assento {indice + 1}</p>)}
+                {sessaoEscolhida.map((assento, indice) => <p key={indice}>Assento {assento}</p>)}
             </TextContainer>
 
             <TextContainer data-test="client-info">

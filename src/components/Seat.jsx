@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import { useState } from "react";
 let novaArray = [];
-export default function Seat({seat, setLista}) {
+let cadeiras = [];
+export default function Seat({seat, setLista, setSessaoEscolhida}) {
     const [cor, setCor] = useState(seat.isAvailable === true ? 'disponivel' : 'nao-disponivel');
     
     
@@ -16,12 +17,15 @@ export default function Seat({seat, setLista}) {
         } else if (novaArray.includes(seat.id)) {
             setCor('disponivel');
             novaArray = novaArray.filter(assento => assento !== seat.id)
+            cadeiras = cadeiras.filter(cadeira => cadeira !== seat.name)
         } else {
             setCor('selecionado')
             novaArray.push(seat.id);
+            cadeiras.push(seat.name)
             
         }
         setLista(novaArray)
+        setSessaoEscolhida(cadeiras)
     }
 
     return (

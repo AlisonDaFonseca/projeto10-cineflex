@@ -4,7 +4,7 @@ import styled from "styled-components"
 import axios from "axios";
 import Seat from "../../components/Seat";
 
-export default function SeatsPage({ nome, setNome, cpf, setCpf, lista, setLista, sessao, setSessao }) {
+export default function SeatsPage({ nome, setNome, cpf, setCpf, lista, setLista, sessao, setSessao, setSessaoEscolhida }) {
 
 
     const parametros = useParams();
@@ -51,7 +51,7 @@ export default function SeatsPage({ nome, setNome, cpf, setCpf, lista, setLista,
             Selecione o(s) assento(s)
 
             <SeatsContainer>
-                {sessao.seats.map(seat => <Seat  key={seat.id} seat={seat} setLista={setLista} />)}
+                {sessao.seats.map(seat => <Seat  key={seat.id} seat={seat} setLista={setLista} setSessaoEscolhida={setSessaoEscolhida}/>)}
             </SeatsContainer>
             <CaptionContainer>
                 <CaptionItem>

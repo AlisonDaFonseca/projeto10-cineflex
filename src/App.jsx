@@ -14,6 +14,7 @@ export default function App() {
     const [nome, setNome] = useState('');
     const [cpf, setCpf] = useState('');
     const [lista, setLista] = useState(undefined);
+    const [sessaoEscolhida, setSessaoEscolhida] = useState(undefined);
     const [sessao, setSessao] = useState(undefined);
    
 
@@ -27,8 +28,8 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/sessoes/:idFilme" element={<SessionsPage />} />
-                <Route path="/assentos/:idSessao" element={<SeatsPage nome={nome} setNome={setNome}cpf={cpf} setCpf={setCpf} lista={lista} setLista={setLista} sessao={sessao} setSessao={setSessao}/>} />
-                <Route path="/sucesso" element={<SuccessPage lista={lista} setLista={setLista} nome={nome} setNome={setNome} cpf={cpf} setCpf={setCpf} setSessao={setSessao} sessao={sessao} /> } />
+                <Route path="/assentos/:idSessao" element={<SeatsPage setSessaoEscolhida={setSessaoEscolhida} nome={nome} setNome={setNome}cpf={cpf} setCpf={setCpf} lista={lista} setLista={setLista} sessao={sessao} setSessao={setSessao}/>} />
+                <Route path="/sucesso" element={<SuccessPage sessaoEscolhida={sessaoEscolhida} setSessaoEscolhida={setSessaoEscolhida} setLista={setLista} nome={nome} setNome={setNome} cpf={cpf} setCpf={setCpf} setSessao={setSessao} sessao={sessao} /> } />
             </Routes>
         </BrowserRouter>
     )

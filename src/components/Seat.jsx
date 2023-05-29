@@ -25,7 +25,7 @@ export default function Seat({seat, setLista}) {
     }
 
     return (
-        <SeatItem type="button"
+        <SeatItem data-test="seat" type="button"
             cor={cor}
             onClick={() => { selecionaAssento(seat) }}
         >

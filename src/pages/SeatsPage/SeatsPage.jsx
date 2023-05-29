@@ -51,7 +51,7 @@ export default function SeatsPage({ nome, setNome, cpf, setCpf, lista, setLista,
             Selecione o(s) assento(s)
 
             <SeatsContainer>
-                {sessao.seats.map(seat => <Seat data-test="seat" key={seat.id} seat={seat} setLista={setLista} />)}
+                {sessao.seats.map(seat => <Seat  key={seat.id} seat={seat} setLista={setLista} />)}
             </SeatsContainer>
             <CaptionContainer>
                 <CaptionItem>

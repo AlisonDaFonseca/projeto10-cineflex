@@ -1,31 +1,41 @@
 import styled from "styled-components"
+import { useNavigate } from "react-router-dom"
 
-export default function SuccessPage() {
+export default function SuccessPage({sessao, lista, setLista, setSessao, nome, setNome, cpf, setCpf}) {
+
+    const navigate = useNavigate();
+    const listaVazia = [];
+
+    function voltar(){
+        setNome('');
+        setCpf('');
+        setSessao('')
+        setLista(listaVazia)
+        navigate('/');
+    }
 
     return (
         <PageContainer>
             <h1>Pedido feito <br /> com sucesso!</h1>
 
-            <TextContainer>
+            <TextContainer data-test="movie-info">
                 <strong><p>Filme e sessão</p></strong>
-                <p>Tudo em todo lugar ao mesmo tempo</p>
-                <p>03/03/2023 - 14:00</p>
+                <p>{sessao.movie.title}</p>
+                <p>{sessao.day.date} - {sessao.name}</p>
             </TextContainer>
 
-            <TextContainer>
+            <TextContainer data-test="seats-info">
                 <strong><p>Ingressos</p></strong>
-                <p>Assento 01</p>
-                <p>Assento 02</p>
-                <p>Assento 03</p>
+                {lista.map((assento, indice) => <p key={indice}>Assento {indice + 1}</p>)}
             </TextContainer>
 
-            <TextContainer>
+            <TextContainer data-test="client-info">
                 <strong><p>Comprador</p></strong>
-                <p>Nome: Letícia Chijo</p>
-                <p>CPF: 123.456.789-10</p>
+                <p>Nome: {nome}</p>
+                <p>CPF: {cpf[0]}{cpf[1]}{cpf[2]}.{cpf[3]}{cpf[4]}{cpf[5]}.{cpf[6]}{cpf[7]}{cpf[8]}-{cpf[9]}{cpf[10]}</p>
             </TextContainer>
 
-            <button>Voltar para Home</button>
+            <button data-test="go-home-btn" onClick={voltar}>Voltar para Home</button>
         </PageContainer>
     )
 }
@@ -45,6 +55,12 @@ const PageContainer = styled.div`
     }
     button {
         margin-top: 50px;
+        border: none;
+        width: 225px;
+        height: 42px;
+        background: #E8833A;
+        border-radius: 3px;
+        color: #FFFFFF;
     }
     h1 {
         font-family: 'Roboto';

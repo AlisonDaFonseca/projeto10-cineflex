@@ -11,7 +11,7 @@ export default function HomePage() {
     useEffect(() => {
         promise.then((resposta) => {
             setFilmes(resposta.data)
-            console.log(resposta.data)
+           
         });
         promise.catch((erro) => {
             console.log(erro.response.data)
@@ -29,7 +29,7 @@ export default function HomePage() {
 
             <ListContainer>
                 {filmes.map(filme => (
-                        <MovieContainer key={filme.id}>
+                        <MovieContainer data-test="movie" key={filme.id}>
                             <Link to={`/sessions/${filme.id}`}>
                             <img src={filme.posterURL} alt="poster" />
                             </Link>

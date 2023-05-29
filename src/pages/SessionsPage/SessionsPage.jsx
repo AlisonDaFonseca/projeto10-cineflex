@@ -32,9 +32,9 @@ export default function SessionsPage() {
             Selecione o horário
             <div>
                 {horarios.map((horario) => (
-                    <SessionContainer key={horario.id}>
+                    <SessionContainer data-test="movie-day" key={horario.id}>
                         {horario.weekday} - {horario.date}
-                        <ButtonsContainer>
+                        <ButtonsContainer data-test="showtime">
                             {horario.showtimes.map(horario => (
                                 <Link to={`/seats/${horario.id}`} key={horario.id}>
                                  <button >{horario.name}</button>
@@ -46,7 +46,7 @@ export default function SessionsPage() {
                 ))}
             </div>
 
-            <FooterContainer>
+            <FooterContainer data-test="footer">
                 <div>
                     <img src={filme.posterURL} alt="poster" />
                 </div>
@@ -81,13 +81,22 @@ const SessionContainer = styled.div`
     font-size: 20px;
     color: #293845;
     padding: 0 20px;
+    
 `
 const ButtonsContainer = styled.div`
     display: flex;
     flex-direction: row;
     margin: 20px 0;
+    font-weight: 400;
     button {
         margin-right: 20px;
+        border: none;
+        background: #E8833A;
+        width: 83px;
+        height: 43px;
+        border-radius: 3px;
+        color: #FFFFFF
+        
     }
     a {
         text-decoration: none;

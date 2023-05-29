@@ -6,9 +6,16 @@ import SuccessPage from "./pages/SuccessPage/SuccessPage"
 import axios from 'axios'
 import { Link } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { useState } from "react"
 
 export default function App() {
     axios.defaults.headers.common['Authorization'] = 'GMpMHZ3apRoj0Qr7d6T8eNLY';
+
+    const [nome, setNome] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [lista, setLista] = useState(undefined);
+    const [sessao, setSessao] = useState(undefined);
+   
 
     return (
         <BrowserRouter>
@@ -20,8 +27,8 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/sessions/:idFilme" element={<SessionsPage />} />
-                <Route path="/seats/:idHorarios" element={<SeatsPage />} />
-                <Route path="/success" element={<SuccessPage />} />
+                <Route path="/seats/:idHorarios" element={<SeatsPage nome={nome} setNome={setNome}cpf={cpf} setCpf={setCpf} lista={lista} setLista={setLista} sessao={sessao} setSessao={setSessao}/>} />
+                <Route path="/success" element={<SuccessPage lista={lista} setLista={setLista} nome={nome} setNome={setNome} cpf={cpf} setCpf={setCpf} setSessao={setSessao} sessao={sessao} /> } />
             </Routes>
         </BrowserRouter>
     )

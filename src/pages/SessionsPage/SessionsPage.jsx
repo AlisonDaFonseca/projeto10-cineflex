@@ -11,8 +11,8 @@ export default function SessionsPage() {
 
 
     useEffect(() => {
-        const url = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${parametros.idFilme}/showtimes`
-        const promise = axios.get(url);
+        const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${parametros.idFilme}/showtimes`
+        const promise = axios.get(URL);
 
         promise.then((resposta) => {
             setFilme(resposta.data)
@@ -34,10 +34,10 @@ export default function SessionsPage() {
                 {horarios.map((horario) => (
                     <SessionContainer data-test="movie-day" key={horario.id}>
                         {horario.weekday} - {horario.date}
-                        <ButtonsContainer data-test="showtime">
+                        <ButtonsContainer >
                             {horario.showtimes.map(horario => (
                                 <Link to={`/seats/${horario.id}`} key={horario.id}>
-                                 <button >{horario.name}</button>
+                                 <button data-test="showtime">{horario.name}</button>
                                 </Link>
                                
                             ))}
